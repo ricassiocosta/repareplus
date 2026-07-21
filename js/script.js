@@ -46,22 +46,16 @@ document.getElementById('currentYear').textContent = new Date().getFullYear();
 
 const form = document.getElementById('contactForm');
 const status = document.getElementById('formStatus');
-const telefoneInput = document.getElementById('telefone');
-
-telefoneInput.addEventListener('input', () => {
-  telefoneInput.value = telefoneInput.value.replace(/\D/g, '').slice(0, 13);
-});
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const data = new FormData(form);
   const nome = data.get('nome');
-  const telefone = data.get('telefone');
   const equipamento = data.get('equipamento');
   const mensagem = data.get('mensagem');
 
   const destino = '5585992242742';
-  const texto = encodeURIComponent(`Olá, meu nome é ${nome}.\nTelefone: ${telefone}\nEquipamento: ${equipamento}\nProblema: ${mensagem}`);
+  const texto = encodeURIComponent(`Olá, meu nome é ${nome}.\nEquipamento: ${equipamento}\nProblema: ${mensagem}`);
 
   status.textContent = 'Abrindo o WhatsApp...';
   window.open(`https://wa.me/${destino}?text=${texto}`, '_blank');
